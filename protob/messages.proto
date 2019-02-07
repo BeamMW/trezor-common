@@ -245,4 +245,7 @@ enum MessageType {
     MessageType_EosTxActionRequest = 603 [(wire_out) = true];
     MessageType_EosTxActionAck = 604 [(wire_in) = true];
     MessageType_EosSignedTx = 605 [(wire_out) = true];
+
+    // Beam
+    MessageType_BeamDisplayMessage = 700 [(wire_in) = true];
 }
