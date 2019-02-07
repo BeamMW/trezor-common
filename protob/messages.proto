@@ -248,4 +248,5 @@ enum MessageType {
 
     // Beam
     MessageType_BeamDisplayMessage = 700 [(wire_in) = true];
+    MessageType_BeamConfirmResponseMessage = 701 [(wire_out) = true];
 }

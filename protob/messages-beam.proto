@@ -50,6 +50,16 @@ message BeamDisplayMessage {
 }
 
 /**
+ * A response to BEAM's ConfirmRequest message. For now it's used only for response from BeamDisplayMessage
+ * (a.k.a. "HelloWorld") message.
+ * @end
+ */
+message BeamConfirmResponseMessage {
+    optional string text = 1;   // text that was required to confirm or reject
+    optional bool response = 2; // A confirmation/rejection of request message
+}
+
+/**
  * Request: ask device to sign SEND Beam transaction
  * @start
  * @next BeamSignedTx
