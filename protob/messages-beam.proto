@@ -22,6 +22,12 @@ message BeamTransactionDestinationEntry {
     //TODO
 }
 
+message BeamSignature {
+    optional bytes nonce_pub_x = 1;     // X part of public nonce of the signature
+    optional bytes nonce_pub_y = 2;     // Y part of public nonce of the signature (0 or 1)
+    optional bytes sign_k = 3;          // k part of the signature
+}
+
 /**
  * Request: Address at the specified index
  * @start
@@ -76,9 +82,18 @@ message BeamSignMessage {
  * @end
  */
 message BeamSignedMessage {
-    optional bytes nonce_pub_x = 1;     // X part of public nonce of the signature
-    optional bytes nonce_pub_y = 2;     // Y part of public nonce of the signature (0 or 1)
-    optional bytes sign_k = 3;          // k part of the signature
+    optional BeamSignature signature = 1; // BEAM signature
+}
+
+/**
+ * Request: Ask device to verify message
+ * @start
+ * @next Success
+ * @next Failure
+ */
+message BeamVerifyMessage {
+    optional BeamSignature signature = 1; // BEAM message signature
+    optional bytes message = 2;           // message to verify
 }
 
 //////////////////// TMP ////////////////////
@@ -129,10 +144,6 @@ message BeamSignReceiveTx {
             optional string destination = 2;		// destination account address
             optional uint32 destination_tag = 3;	// destination tag to identify payments
         }
-
-    message BeamSignature {
-        //TODO
-    }
 }
 
 /**
