@@ -92,9 +92,9 @@ message BeamSignedMessage {
  * @next Failure
  */
 message BeamVerifyMessage {
-    optional BeamSignature signature = 1; // BEAM message signature
-    optional bytes xpub = 2;              // public key
-    optional bytes message = 3;           // message to verify
+    optional BeamSignature signature = 1;   // BEAM message signature
+    optional BeamPublicKey public_key = 2;  // BEAM public key
+    optional bytes message = 3;             // message to verify
 }
 
 /**
@@ -112,7 +112,8 @@ message BeamGetPublicKey {
  * @end
  */
 message BeamPublicKey {
-    optional bytes xpub = 1; // public key
+    optional bytes pub_x = 1; // public key - X point
+    optional bytes pub_y = 2; // public key - Y point
 }
 
 //////////////////// TMP ////////////////////
