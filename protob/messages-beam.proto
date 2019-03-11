@@ -93,7 +93,26 @@ message BeamSignedMessage {
  */
 message BeamVerifyMessage {
     optional BeamSignature signature = 1; // BEAM message signature
-    optional bytes message = 2;           // message to verify
+    optional bytes xpub = 2;              // public key
+    optional bytes message = 3;           // message to verify
+}
+
+/**
+ * Request: Ask device for public key
+ * @start
+ * @next BeamPublicKey
+ * @next Failure
+ */
+message BeamGetPublicKey {
+    optional bool show_display = 1; // optionally show on display before sending the result
+}
+
+/**
+ * Response: Contains public key derived from device private seed
+ * @end
+ */
+message BeamPublicKey {
+    optional bytes xpub = 1; // public key
 }
 
 //////////////////// TMP ////////////////////
