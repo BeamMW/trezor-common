@@ -116,6 +116,25 @@ message BeamPublicKey {
     optional bytes pub_y = 2; // public key - Y point
 }
 
+/**
+ * Request: Ask defice for an owner key
+ * @start
+ * @next BeamOwnerKey
+ * @next Failure
+ */
+message BeamGetOwnerKey {
+    optional bool show_display = 1; // optionally show on display before sending the result
+}
+
+/**
+ * Response: Contains owner key from device
+ * @end
+ */
+message BeamOwnerKey {
+    optional bytes key = 1; // owner key
+}
+
+
 //////////////////// TMP ////////////////////
 /**
  * Request: ask device to sign SEND Beam transaction
