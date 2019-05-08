@@ -256,4 +256,7 @@ enum MessageType {
     MessageType_BeamPublicKey = 706 [(wire_out) = true];
     MessageType_BeamGetOwnerKey = 707 [(wire_in) = true];
     MessageType_BeamOwnerKey = 708 [(wire_out) = true];
+    MessageType_BeamGenerateKey = 709 [(wire_in) = true];
+    MessageType_BeamGenerateNonce = 710 [(wire_in) = true];
+    MessageType_BeamECCImage = 711 [(wire_out) = true];
 }

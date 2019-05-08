@@ -6,44 +6,55 @@ option java_package = "com.satoshilabs.trezor.lib.protobuf";
 option java_outer_classname = "TrezorMessageBeam";
 
 /**
- * Structure representing Beam transaction source entry, UTXO
+ * Structure representing beam KIDV (Key ID, Value) structure
  * @embed
  */
-message BeamTransactionSourceEntry {
-    //TODO
-    //repeated BeamSourceEntry outputs = 1;
+message BeamKeyIDV {(
+    optional uint64 idx = 1;
+    optional uint32 type = 2;
+    optional uint32 sub_idx = 3;
+
+    optional uint64 value = 4;
 }
 
 /**
- * Structure representing Monero transaction destination entry
- * @embed
+ * Request: Generate key from given KIDV and export it's image
+ * @start
+ * @next BeamPublicKey
  */
-message BeamTransactionDestinationEntry {
-    //TODO
+message BeamGenerateKey {
+    optional BeamKeyIDV kidv = 1;  // KIDV to generate key from
+    optional bool is_coin_key = 2; // specifies, whether we should create either common or coin key
 }
 
+/**
+ * Request: Generate nonce for the given slot index
+ * @start
+ * @next BeamECCImage
+ * @next Failure
+ */
+message BeamGenerateNonce {
+    optional uint32 slot = 1; // Slot where generated nonce should be stored
+}
+
+/**
+ * Structure representing ECC point's image
+ * @embed
+ * @end
+ */
+message BeamECCImage {
+    optional bytes image_x = 1; // Image of ECC point (only x)
+}
+
+/**
+ * Structure representing BeamSignature
+ * @embed
+ * @end
+ */
 message BeamSignature {
     optional bytes nonce_pub_x = 1;     // X part of public nonce of the signature
     optional bytes nonce_pub_y = 2;     // Y part of public nonce of the signature (0 or 1)
     optional bytes sign_k = 3;          // k part of the signature
-}
-
-/**
- * Request: Address at the specified index
- * @start
- * @next BeamAddress
- */
-message BeamGetAddress {
-    repeated uint32 address_n = 1;			// BIP-32 path. For compatibility with other wallets, must be m/44'/144'/index'
-    optional bool show_display = 2;			// optionally show on display before sending the result
-}
-
-/**
- * Response: Address for the given index
- * @end
- */
-message BeamAddress {
-    optional string address = 1;	// Address in Beam format
 }
 
 /**
@@ -108,7 +119,7 @@ message BeamGetPublicKey {
 }
 
 /**
- * Response: Contains public key derived from device private seed
+ * Response: Contains public key derived from device private seed or an image of KeyIDV
  * @end
  */
 message BeamPublicKey {
@@ -117,7 +128,7 @@ message BeamPublicKey {
 }
 
 /**
- * Request: Ask defice for an owner key
+ * Request: Ask device for an owner key
  * @start
  * @next BeamOwnerKey
  * @next Failure
