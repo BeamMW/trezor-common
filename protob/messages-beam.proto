@@ -9,7 +9,7 @@ option java_outer_classname = "TrezorMessageBeam";
  * Structure representing beam KIDV (Key ID, Value) structure
  * @embed
  */
-message BeamKeyIDV {(
+message BeamKeyIDV {
     optional uint64 idx = 1;
     optional uint32 type = 2;
     optional uint32 sub_idx = 3;
