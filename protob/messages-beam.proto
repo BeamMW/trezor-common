@@ -145,6 +145,26 @@ message BeamOwnerKey {
     optional bytes key = 1; // owner key
 }
 
+/**
+ * Request: generate rangeproof (public or confidential) for given kidv and nonce slot
+ * @next BeamRangeproofData
+ * @next Failure
+ */
+message BeamGenerateRangeproof {
+    optional BeamKeyIDV kidv = 1;  // KIDV to generate key from
+    optional uint32 slot = 2; // nonce slot
+    optional bool is_public = 3; // displays whether it's public or confidential rangeproof
+}
+
+/**
+ * Response: Contains rangeproof data structure for given kidv and nonce slot
+ * @end
+ */
+message BeamRangeproofData {
+    optional bytes data = 1; // rangeproof data
+    optional bool is_public = 2; // displays whether it's public or confidential rangeproof
+}
+
 
 //////////////////// TMP ////////////////////
 /**
