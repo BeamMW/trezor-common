@@ -152,8 +152,7 @@ message BeamOwnerKey {
  */
 message BeamGenerateRangeproof {
     optional BeamKeyIDV kidv = 1;  // KIDV to generate key from
-    optional uint32 slot = 2; // nonce slot
-    optional bool is_public = 3; // displays whether it's public or confidential rangeproof
+    optional bool is_public = 2; // displays whether it's public or confidential rangeproof
 }
 
 /**
