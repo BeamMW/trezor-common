@@ -258,7 +258,9 @@ enum MessageType {
     MessageType_BeamOwnerKey = 708 [(wire_out) = true];
     MessageType_BeamGenerateKey = 709 [(wire_in) = true];
     MessageType_BeamGenerateNonce = 710 [(wire_in) = true];
-    MessageType_BeamECCImage = 711 [(wire_out) = true];
+    MessageType_BeamECCPoint = 711 [(wire_out) = true];
     MessageType_BeamGenerateRangeproof = 712 [(wire_in) = true];
     MessageType_BeamRangeproofData = 713 [(wire_out) = true];
+    MessageType_BeamSignTransaction = 714 [(wire_in) = true];
+    MessageType_BeamSignedTransaction = 715 [(wire_out) = true];
 }

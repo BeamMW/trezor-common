@@ -30,7 +30,7 @@ message BeamGenerateKey {
 /**
  * Request: Generate nonce for the given slot index
  * @start
- * @next BeamECCImage
+ * @next BeamECCPoint
  * @next Failure
  */
 message BeamGenerateNonce {
@@ -38,12 +38,13 @@ message BeamGenerateNonce {
 }
 
 /**
- * Structure representing ECC point's image
+ * Structure representing ECC point
  * @embed
  * @end
  */
-message BeamECCImage {
-    optional bytes image_x = 1; // Image of ECC point (only x)
+message BeamECCPoint {
+    optional bytes x = 1; // Image of ECC point (only x)
+    optional bytes y = 2; // y part
 }
 
 /**
@@ -165,8 +166,16 @@ message BeamRangeproofData {
 }
 
 /**
- * Request: sign transaction with given inputs and outputs
- * @next BeamSignature
+ * Response: signature for transaction
+ * @end
+ */
+message BeamSignedTransaction {
+    optional bytes signature = 1;
+}
+
+/**
+ * Request: sign transaction with given inputs, outputs, transaction and kernel parameters
+ * @next BeamSignedTransaction
  * @next Failure
  */
 message BeamSignTransaction {
@@ -174,19 +183,17 @@ message BeamSignTransaction {
     optional bytes offset_sk = 2; // Randomly generated offset (scalar)
     repeated BeamKeyIDV outputs = 3; // KIDV outputs
     optional uint32 nonce_slot = 4; // nonce slot which should be used
-    optional BeamKernelParameters = 5; // kernel parameters for challenge
+    optional BeamKernelParameters kernel_params = 5; // kernel parameters for challenge
 
     message BeamKernelParameters {
         optional uint64 fee = 1;
-        optional bytes commitment_x = 2;
-        optional bytes commitment_y = 3;
+        optional BeamECCPoint commitment = 2;
         optional uint64 min_height = 4;
         optional uint64 max_height = 5;
-        optional int64 asset_emission = 6;
+        optional sint64 asset_emission = 6;
         optional bytes hash_lock = 7;
-        optional bytes multisig_nonce = 8;
-        optional bytes multisig_excess_x = 9;
-        optional bytes multisig_excess_y = 10;
+        optional BeamECCPoint multisig_nonce = 8;
+        optional BeamECCPoint multisig_excess = 9;
     }
 }
 
@@ -238,14 +245,5 @@ message BeamSignReceiveTx {
             optional string destination = 2;		// destination account address
             optional uint32 destination_tag = 3;	// destination tag to identify payments
         }
-}
-
-/**
- * Response: signature for transaction
- * @end
- */
-message BeamSignedTx {
-    optional bytes signature = 1;
-    optional bytes serialized_tx = 2;
 }
 
