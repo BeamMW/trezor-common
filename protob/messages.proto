@@ -263,4 +263,5 @@ enum MessageType {
     MessageType_BeamRangeproofData = 713 [(wire_out) = true];
     MessageType_BeamSignTransaction = 714 [(wire_in) = true];
     MessageType_BeamSignedTransaction = 715 [(wire_out) = true];
+    MessageType_BeamGetNoncePublic = 716 [(wire_in) = true];
 }

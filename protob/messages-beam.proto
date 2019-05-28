@@ -38,6 +38,16 @@ message BeamGenerateNonce {
 }
 
 /**
+ * Request: Get public key of nonce for the given slot index
+ * @start
+ * @next BeamPublicKey
+ * @next Failure
+ */
+message BeamGetNoncePublic {
+    optional uint32 slot = 1; // Slot where generated nonce should be stored
+}
+
+/**
  * Structure representing ECC point
  * @embed
  * @end
