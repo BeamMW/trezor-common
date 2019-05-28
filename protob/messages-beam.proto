@@ -44,7 +44,7 @@ message BeamGenerateNonce {
  */
 message BeamECCPoint {
     optional bytes x = 1; // Image of ECC point (only x)
-    optional bytes y = 2; // y part
+    optional bool y = 2; // y part
 }
 
 /**
