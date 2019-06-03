@@ -253,7 +253,6 @@ enum MessageType {
     MessageType_BeamSignedMessage = 703 [(wire_out) = true];
     MessageType_BeamVerifyMessage = 704 [(wire_in) = true];
     MessageType_BeamGetPublicKey = 705 [(wire_in) = true];
-    MessageType_BeamPublicKey = 706 [(wire_out) = true];
     MessageType_BeamGetOwnerKey = 707 [(wire_in) = true];
     MessageType_BeamOwnerKey = 708 [(wire_out) = true];
     MessageType_BeamGenerateKey = 709 [(wire_in) = true];
