@@ -247,10 +247,7 @@ enum MessageType {
     MessageType_EosSignedTx = 605 [(wire_out) = true];
 
     // Beam
-    MessageType_BeamDisplayMessage = 700 [(wire_in) = true];
-    MessageType_BeamConfirmResponseMessage = 701 [(wire_out) = true];
     MessageType_BeamSignMessage = 702 [(wire_in) = true];
-    MessageType_BeamSignedMessage = 703 [(wire_out) = true];
     MessageType_BeamVerifyMessage = 704 [(wire_in) = true];
     MessageType_BeamGetPublicKey = 705 [(wire_in) = true];
     MessageType_BeamGetOwnerKey = 707 [(wire_in) = true];
