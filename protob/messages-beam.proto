@@ -63,9 +63,8 @@ message BeamECCPoint {
  * @end
  */
 message BeamSignature {
-    optional bytes nonce_pub_x = 1;     // X part of public nonce of the signature
-    optional bytes nonce_pub_y = 2;     // Y part of public nonce of the signature (0 or 1)
-    optional bytes sign_k = 3;          // k part of the signature
+    optional BeamECCPoint nonce_pub = 1; // Public nonce of the signature
+    optional bytes sign_k = 2;           // k part of the signature
 }
 
 /**
