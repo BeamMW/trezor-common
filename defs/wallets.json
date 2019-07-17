@@ -1,6 +1,12 @@
 {
+    "bitcoin:ACM": {
+        "Actilectrum": "https://actilectrum.org"
+    },
     "bitcoin:BCH": {
         "Electron Cash": "https://electroncash.org"
+    },
+    "bitcoin:BELL": {
+        "Electrum-BELL": "https://bell.electrum-jp.net"
     },
     "bitcoin:BTC": {
         "Electrum": "https://electrum.org"
@@ -13,6 +19,12 @@
     },
     "bitcoin:BTX": {
         "Electrum-BTX": "https://github.com/LIMXTEC/electrum-btx"
+    },
+    "bitcoin:CPC": {
+        "Capricoin Mobile Wallet": "https://wallet.capricoin.org"
+    },
+    "bitcoin:CPU": {
+        "Electrum-CPU": "https://cpuchain.org/download"
     },
     "bitcoin:DASH": {
         "Dash Electrum": "https://electrum.dash.org"
@@ -44,8 +56,31 @@
     "bitcoin:VIA": {
         "Vialectrum": "https://vialectrum.org"
     },
+    "bitcoin:VIPS": {
+        "Electrum-VIPS": "https://electrum-vips.info"
+    },
     "bitcoin:XZC": {
         "Electrum-XZC": "https://github.com/zcoinofficial/electrum-xzc",
         "Znode Tool": "https://github.com/yura-pakhuchiy/znode-tool"
+    },
+    "bitcoin:SMART": {
+        "Electrum-SMART": "https://github.com/smartcash/electrum-smart"
+    },
+    "bitcoin:NIX": {
+        "NIX-Electrum": "https://github.com/nixplatform/electrum-nix",
+        "Ghostnode Tool": "https://github.com/nixplatform/ghostnode-tool"
+    },
+    "bitcoin:QTUM": {
+        "Qtum-Electrum": "https://github.com/qtumproject/qtum-electrum"
+    },
+    "bitcoin:RVN": {
+        "Electrum-RVN": "https://github.com/traysi/electrum-raven",
+        "Mango Farm": "https://mangofarmassets.com/mangowallet"
+    },
+    "bitcoin:ZNY": {
+        "Electrum-ZNY": "https://zny.electrum-jp.net"
+    },
+    "bitcoin:XRC": {
+        "Electrum-XRC": "https://electrum.bitcoinrh.org"
     }
 }

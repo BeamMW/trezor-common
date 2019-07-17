@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Fetch information about coins and tokens supported by Trezor and update it in coins_details.json."""
-import os
-import time
 import json
 import logging
-import requests
+import os
 import sys
-import coin_info
+import time
 
 import click
+import requests
+
+import coin_info
 
 LOG = logging.getLogger(__name__)
 
@@ -73,6 +74,19 @@ def coinmarketcap_init(api_key, refresh=None):
                 api_key,
                 params={"limit": 5000, "convert": "USD"},
             )
+            by_id = {str(coin["id"]): coin for coin in coinmarketcap_data["data"]}
+            all_ids = list(by_id.keys())
+            while all_ids:
+                first_100 = all_ids[:100]
+                all_ids = all_ids[100:]
+                time.sleep(1)
+                print("Fetching metadata, {} coins remaining...".format(len(all_ids)))
+                metadata = coinmarketcap_call(
+                    "cryptocurrency/info", api_key, params={"id": ",".join(first_100)}
+                )
+                for coin_id, meta in metadata["data"].items():
+                    by_id[coin_id]["meta"] = meta
+
             with open(COINMAKETCAP_CACHE, "w") as f:
                 json.dump(coinmarketcap_data, f)
     except Exception as e:
@@ -81,9 +95,13 @@ def coinmarketcap_init(api_key, refresh=None):
     coin_data = {}
     for coin in coinmarketcap_data["data"]:
         slug = coin["slug"]
+        platform = coin["meta"]["platform"]
         market_cap = coin["quote"]["USD"]["market_cap"]
         if market_cap is not None:
             coin_data[slug] = int(market_cap)
+            if platform is not None and platform["name"] == "Ethereum":
+                address = platform["token_address"].lower()
+                coin_data[address] = int(market_cap)
 
     MARKET_CAPS = coin_data
 
@@ -92,6 +110,10 @@ def coinmarketcap_init(api_key, refresh=None):
 
 def marketcap(coin):
     cap = None
+    if coin["type"] == "erc20":
+        address = coin["address"].lower()
+        return MARKET_CAPS.get(address)
+
     if "coinmarketcap_alias" in coin:
         cap = MARKET_CAPS.get(coin["coinmarketcap_alias"])
     if cap is None:
@@ -128,7 +150,7 @@ def summary(coins, api_key):
     try:
         ret = coinmarketcap_call("global-metrics/quotes/latest", api_key)
         total_marketcap = int(ret["data"]["quote"]["USD"]["total_market_cap"])
-    except:
+    except Exception:
         pass
 
     return dict(
@@ -321,7 +343,7 @@ def check_missing_data(coins):
         if len(coin.get("wallet", [])) == 0:
             LOG.debug(f"{k}: Missing wallet")
 
-        if "Testnet" in coin["name"]:
+        if "Testnet" in coin["name"] or "Regtest" in coin["name"]:
             LOG.debug(f"{k}: Hiding testnet")
             hide = True
 

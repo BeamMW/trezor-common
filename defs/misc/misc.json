@@ -37,7 +37,9 @@
             "Homepage": "https://getmonero.org",
             "Github": "https://github.com/monero-project/monero"
         },
-        "wallet": {},
+        "wallet": {
+            "Monero CLI/GUI": "https://www.getmonero.org/downloads/"
+        },
         "blockchain_link": {}
     },
     {
@@ -50,7 +52,9 @@
             "Homepage": "https://ripple.com",
             "Github": "https://github.com/ripple/rippled"
         },
-        "wallet": {},
+        "wallet": {
+            "Trezor Beta": "https://beta-wallet.trezor.io/next/"
+        },
         "blockchain_link": {
             "type": "ripple",
             "url": [
@@ -148,19 +152,6 @@
         "blockchain_link": {}
     },
     {
-        "name": "Tron",
-        "shortcut": "TRX",
-        "slip44": 195,
-        "curve": "secp256k1",
-        "decimals": 6,
-        "links": {
-            "Homepage": "https://tron.network",
-            "Github": "https://github.com/tronprotocol/java-tron"
-        },
-        "wallet": {},
-        "blockchain_link": {}
-    },
-    {
         "name": "Omni",
         "shortcut": "OMNI",
         "slip44": 0,
@@ -184,6 +175,20 @@
             "Github": "https://github.com/maidsafe"
         },
         "wallet": {},
+        "blockchain_link": {}
+    },
+    {
+        "name": "Binance Chain",
+        "shortcut": "BNB",
+        "slip44": 714,
+        "curve": "secp256k1",
+        "decimals": 8,
+        "links": {
+            "Homepage": "https://binance.org"
+        },
+        "wallet": {
+            "Trust Wallet": "https://trustwallet.com"
+        },
         "blockchain_link": {}
     },
     {

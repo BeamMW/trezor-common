@@ -80,6 +80,7 @@ message ApplySettings {
     optional bytes homescreen = 4;
     optional PassphraseSourceType passphrase_source = 5;
     optional uint32 auto_lock_delay_ms = 6;
+    optional uint32 display_rotation = 7;  // in degrees from North
     /**
     * Structure representing passphrase source
     */
@@ -190,6 +191,7 @@ message ResetDevice {
     optional uint32 u2f_counter = 7;                    // U2F counter
     optional bool skip_backup = 8;                      // postpone seed backup to BackupDevice workflow
     optional bool no_backup = 9;                        // indicate that no backup is going to be made
+    optional bool slip39 = 10;                          // indicate that we want SLIP-39 backup not BIP-39
 }
 
 /**

@@ -1,7 +1,7 @@
 {
-  "coin_name": "Nix",
+  "coin_name": "NIX",
   "coin_shortcut": "NIX",
-  "coin_label": "Nix",
+  "coin_label": "NIX",
   "website": "https://nixplatform.io",
   "github": "https://github.com/nixplatform/nixcore",
   "maintainer": "mattt21 <matt@nixplatform.io>",
@@ -15,7 +15,7 @@
   "xprv_magic": 76066276,
   "xpub_magic": 76067358,
   "xpub_magic_segwit_p2sh": 77429938,
-  "xpub_magic_segwit_native": null,
+  "xpub_magic_segwit_native": 78792518,
   "bech32_prefix": "nix",
   "cashaddr_prefix": null,
   "slip44": 400,
@@ -32,7 +32,8 @@
   "uri_prefix": "nix",
   "min_address_length": 27,
   "max_address_length": 34,
-  "bitcore": [],
+  "bitcore": ["https://blockchain.nixplatform.io"],
   "blockbook": [],
-  "cooldown": 100
+  "cooldown": 100,
+  "consensus_branch_id": null
 }
